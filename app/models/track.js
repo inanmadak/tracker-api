@@ -7,7 +7,7 @@ const TrackSchema = new Schema({
     required: true,
     default: Date.now
   },
-  end_time: {
+  stop_time: {
     type: Date
   },
   description: {
