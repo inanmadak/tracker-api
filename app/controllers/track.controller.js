@@ -7,7 +7,8 @@ class TrackController extends BaseController {
     'id',
     'start_time',
     'end_time',
-    'description'
+    'description',
+    'startNow'
   ];
 
   pageLimit = 10;
@@ -64,10 +65,11 @@ class TrackController extends BaseController {
 
     let { sort, page } = req.query;
 
-    page = page || 1;
+    page = parseInt(page) || 1;
     sort = sort || 'desc';
     let skip = (page - 1) * 10;
 
+    console.log(req.query)
     try{
       const total = await Track.find({}).count();
       const tracks = await Track.find({}).sort({createdAt: sort }).lean().skip(skip).limit(this.pageLimit).exec();
@@ -92,8 +94,9 @@ class TrackController extends BaseController {
   }
 
   start = async (req, res, next) => {
-    const params = this.filterParams(req.body, this.whitelist);
-
+    // const params = this.filterParams(req.body, this.whitelist);
+    const params = req.body;
+    console.log(req.params)
     const track = new Track({
       ...params
     });
