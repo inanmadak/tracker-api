@@ -116,11 +116,11 @@ class TrackController extends BaseController {
       const track = await Track.findOne({_id: id}).exec();
 
       if(track){
-        if(track.end_time){
+        if(track.stop_time){
           return res.status(400).json({ message: 'Track already stopped.', track: track.toJSON()});
         }
 
-        track.end_time = Date.now();
+        track.stop_time = Date.now();
         return res.json(await track.save());
       }
 
@@ -134,8 +134,8 @@ class TrackController extends BaseController {
   delete = async (req, res, next) => {
 
       try {
-        await req.track.remove();
-        res.sendStatus(204);
+        await Track.remove({_id: req.params.id}).exec();
+        res.status(200).json({status: true, id: req.params.id });
       } catch(err) {
         next(err);
       }
