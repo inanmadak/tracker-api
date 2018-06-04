@@ -11,8 +11,7 @@ const TrackSchema = new Schema({
     type: Date
   },
   description: {
-    type: String,
-    required: true,
+    type: String
   },
   
   
