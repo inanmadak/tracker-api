@@ -77,7 +77,7 @@ class TrackController extends BaseController {
     console.log(req.query)
     try{
       const total = await Track.find(query).count();
-      const tracks = await Track.find(query).sort({createdAt: sort }).lean().skip(skip).limit(this.pageLimit).exec();
+      const tracks = await Track.find(query).sort({start_time: sort }).lean().skip(skip).limit(this.pageLimit).exec();
 
       return res.json({
         total: total,
@@ -102,9 +102,14 @@ class TrackController extends BaseController {
     // const params = this.filterParams(req.body, this.whitelist);
     const params = req.body;
     console.log(req.params)
-    const track = new Track({
-      ...params
-    });
+    const track = new Track();
+
+    track.description = params.description;
+    
+    if(params.booktime){
+      track.start_time = new Date(params.booktime);
+      console.log(new Date(params.booktime))
+    }
 
     try {
       res.status(201).json(await track.save());
