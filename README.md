@@ -15,7 +15,7 @@ Install dependencies
 - npm install
 
 Run it
-- npm start
+- npm start (use node index.js if any issues)
 
 Try it!
 - Visit http://localhost:4567/track/list
