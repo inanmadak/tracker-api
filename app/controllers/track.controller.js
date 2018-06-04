@@ -34,36 +34,41 @@ class TrackController extends BaseController {
     }
   }
 
-  search = async (req, res, next) => {
-    let { text, page, sort } = req.query;
+  // search = async (req, res, next) => {
+  //   let { text, page, sort } = req.query;
 
-    page = page || 1;
-    sort = sort || 'desc';
-    const skip = (page - 1) * 10;
-    let query = {
-      description: new RegExp(text, 'i')
-    }
+  //   page = parseInt(page) || 1;
+  //   sort = sort || 'desc';
+  //   const skip = (page - 1) * 10;
+  //   let query = {
+  //     description: new RegExp(text, 'i')
+  //   }
 
-    try {
+  //   try {
 
-      const total = await Track.find(query).count();
-      const tracks =
-        await Track.find(query).lean().skip(skip).limit(this.pageLimit).exec();
+  //     const total = await Track.find(query).count();
+  //     const tracks =
+  //       await Track.find(query).lean().skip(skip).limit(this.pageLimit).exec();
 
-      return res.json({
-        total: total,
-        page: page,
-        sort: sort,
-        data: tracks
-      });
-    } catch(err) {
-      next(err);
-    }
-  }
+  //     return res.json({
+  //       total: total,
+  //       page: page,
+  //       sort: sort,
+  //       data: tracks
+  //     });
+  //   } catch(err) {
+  //     next(err);
+  //   }
+  // }
 
   list = async (req, res, next) => {
 
     let { sort, page } = req.query;
+    let query = {};
+
+    if(req.query.text){
+      query.description = new RegExp(req.query.text, 'i');
+    }
 
     page = parseInt(page) || 1;
     sort = sort || 'desc';
@@ -71,8 +76,8 @@ class TrackController extends BaseController {
 
     console.log(req.query)
     try{
-      const total = await Track.find({}).count();
-      const tracks = await Track.find({}).sort({createdAt: sort }).lean().skip(skip).limit(this.pageLimit).exec();
+      const total = await Track.find(query).count();
+      const tracks = await Track.find(query).sort({start_time: sort }).lean().skip(skip).limit(this.pageLimit).exec();
 
       return res.json({
         total: total,
@@ -97,9 +102,14 @@ class TrackController extends BaseController {
     // const params = this.filterParams(req.body, this.whitelist);
     const params = req.body;
     console.log(req.params)
-    const track = new Track({
-      ...params
-    });
+    const track = new Track();
+
+    track.description = params.description;
+    
+    if(params.booktime){
+      track.start_time = new Date(params.booktime);
+      console.log(new Date(params.booktime))
+    }
 
     try {
       res.status(201).json(await track.save());

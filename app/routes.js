@@ -29,9 +29,9 @@ routes.get('/', MetaController.index);
 routes.get('/track/list', TrackController.list);
 routes.post('/track/start', TrackController.start);
 routes.post('/track/:id/stop', TrackController.stop);
-routes.get('/track/search', TrackController.search);
-routes.delete('/track/:id/delete', TrackController.delete)
-routes.get('/history');
+// routes.get('/track/search', TrackController.search);
+routes.delete('/track/:id', TrackController.delete)
+// routes.get('/history');
 
 routes.use(errorHandler);
 
