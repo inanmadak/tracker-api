@@ -31,7 +31,7 @@ routes.post('/track/start', TrackController.start);
 routes.post('/track/:id/stop', TrackController.stop);
 // routes.get('/track/search', TrackController.search);
 routes.delete('/track/:id', TrackController.delete)
-routes.get('/history');
+// routes.get('/history');
 
 routes.use(errorHandler);
 
