@@ -11,14 +11,14 @@ NodeJS seemed to be a much better and quicker fit for this one.
 First, ensure you have node is installed on your system. By default API connects to a remote MongoDB, so mongo is not necessary
 if you are not going to use a local db(check below)
 
-- Install dependencies
-npm install
+Install dependencies
+- npm install
 
-- Run it
-npm start
+Run it
+- npm start
 
-- Try it!
-Visit http://localhost:4567/track/list
+Try it!
+- Visit http://localhost:4567/track/list
 
 
 ## Below is not necessary for running, but you can connect your own MongoDB with it.
