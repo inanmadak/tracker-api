@@ -34,32 +34,32 @@ class TrackController extends BaseController {
     }
   }
 
-  search = async (req, res, next) => {
-    let { text, page, sort } = req.query;
+  // search = async (req, res, next) => {
+  //   let { text, page, sort } = req.query;
 
-    page = parseInt(page) || 1;
-    sort = sort || 'desc';
-    const skip = (page - 1) * 10;
-    let query = {
-      description: new RegExp(text, 'i')
-    }
+  //   page = parseInt(page) || 1;
+  //   sort = sort || 'desc';
+  //   const skip = (page - 1) * 10;
+  //   let query = {
+  //     description: new RegExp(text, 'i')
+  //   }
 
-    try {
+  //   try {
 
-      const total = await Track.find(query).count();
-      const tracks =
-        await Track.find(query).lean().skip(skip).limit(this.pageLimit).exec();
+  //     const total = await Track.find(query).count();
+  //     const tracks =
+  //       await Track.find(query).lean().skip(skip).limit(this.pageLimit).exec();
 
-      return res.json({
-        total: total,
-        page: page,
-        sort: sort,
-        data: tracks
-      });
-    } catch(err) {
-      next(err);
-    }
-  }
+  //     return res.json({
+  //       total: total,
+  //       page: page,
+  //       sort: sort,
+  //       data: tracks
+  //     });
+  //   } catch(err) {
+  //     next(err);
+  //   }
+  // }
 
   list = async (req, res, next) => {
 
