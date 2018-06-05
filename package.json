@@ -1,7 +1,7 @@
 {
-  "name": "node-rest-api-boilerplate",
+  "name": "open-time-tracker-api",
   "version": "0.10.0",
-  "description": "Boilerplate project for a restful node backend server powered by ES6 and Express",
+  "description": "An Open Time Tracker Api",
   "main": "index.js",
   "scripts": {
     "build": "npm run clean && babel app -d build",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/kylealwyn/node-rest-api-boilerplate.git"
+    "url": "git://github.com/inanmadak/tracker-api.git"
   },
   "keywords": [
     "express",
@@ -32,9 +32,9 @@
   "author": "Kyle Alwyn <kjalwyn@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kylealwyn/node-rest-api-boilerplate/issues"
+    "url": "https://github.com/inanmadak/tracker-api/issues"
   },
-  "homepage": "https://github.com/kylealwyn/node-rest-api-boilerplate",
+  "homepage": "https://github.com/inanmadak/tracker-api",
   "dependencies": {
     "babel-core": "^6.18.0",
     "bcrypt": "^1.0.0",

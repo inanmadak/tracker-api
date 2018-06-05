@@ -17,12 +17,12 @@ routes.get('/', MetaController.index);
 // routes.post('/auth/login', AuthController.login);
 
 // Users
-// routes.get('/users', UsersController.search);
-// routes.post('/users', UsersController.create);
-// routes.get('/users/me', authenticate, UsersController.fetch);
-// routes.put('/users/me', authenticate, UsersController.update);
-// routes.delete('/users/me', authenticate, UsersController.delete);
-// routes.get('/users/:username', UsersController._populate, UsersController.fetch);
+routes.get('/users', UsersController.search);
+routes.post('/users', UsersController.create);
+routes.get('/users/me', authenticate, UsersController.fetch);
+routes.put('/users/me', authenticate, UsersController.update);
+routes.delete('/users/me', authenticate, UsersController.delete);
+routes.get('/users/:username', UsersController._populate, UsersController.fetch);
 
 // Admin
 // routes.get('/admin', accessControl('admin'), MetaController.index);
